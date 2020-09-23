@@ -1,7 +1,14 @@
-let contador = 0;
+
+if (!localStorage.getItem("contador")) {
+    localStorage.setItem("contador", 0)
+}
+
 function count() {
-    contador += 1;
+
+    let contador = localStorage.getItem("contador");
+    contador++;
     document.querySelector("h1").innerHTML = contador;
+    localStorage.setItem("contador", contador);
     /*
     if (contador % 10 === 0) {
         alert(`Count is now ${contador}`);
@@ -13,7 +20,7 @@ function count() {
 // --> document.querySelector('button').onclick = count;
 // cuando el DOM ha cargado
 document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector("h1").innerHTML = localStorage.getItem("contador");
     document.querySelector('button').onclick = count;
-    //intervalo de segundos expresado en milisegundos
-    setInterval(count, 1000);
+
 });     
